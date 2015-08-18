@@ -28,6 +28,18 @@
   [edge]
   (fibonacci-recur edge '(1 1)))
 
+(defn prime?
+  [n]
+  (empty? (filter #(multiples? n %) (range 2 (- n 1)))))
+
+(defn primes
+  [edge]
+  (filter prime? (range edge 1 -1)))
+
+(defn max-prime-factor
+  [n]
+  (first (filter #(multiples? n %) (primes n))))
+
 (defn problem1
   "Find the sum of all the multiples of 3 or 5 below x"
   [x]
@@ -37,3 +49,5 @@
   "Even Fibonacci numbers"
   [x]
   (reduce + (filter even? (fibonacci x))))
+
+(def problem3 max-prime-factor)
