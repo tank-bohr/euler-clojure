@@ -28,8 +28,5 @@
   (is (not (prime? 6)))
   (is (prime? 17)))
 
-(deftest primes-test
-  (is (primes 20) '(2 3 5 7 11 13 17 19)))
-
 (deftest max-prime-factor-test
   (is (max-prime-factor 13195) 29))
