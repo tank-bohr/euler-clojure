@@ -35,30 +35,28 @@
     #(multiples? n %)
     (range 2 (- n 1)))))
 
-(defn max-prime-factor-begin-from
+(defn factors
   [n]
-  (let [m (quot n 2)]
-    (if
-      (even? m)
-      (+ m 1)
-      m)))
+  (filter
+    #(multiples? n %)
+    (range 2 (quot n 2))))
 
 (defn max-prime-factor
   [n]
   (first (filter
-    #(and
-      (multiples? n %)
-      (prime? %))
-    (range (max-prime-factor-begin-from n) 1 -2))))
+    prime?
+    (map
+      #(quot n %)
+      (factors n)))))
 
-(defn problem1
+(def problem1
   "Find the sum of all the multiples of 3 or 5 below x"
-  [x]
-  (reduce + (multiples-of-3-or-5 x)))
+  (reduce + (multiples-of-3-or-5 1000)))
 
-(defn problem2
+(def problem2
   "Even Fibonacci numbers"
-  [x]
-  (reduce + (filter even? (fibonacci x))))
+  (reduce + (filter even? (fibonacci 4000000))))
 
-(def problem3 max-prime-factor)
+(def problem3
+  "Largest prime factor"
+  (max-prime-factor 600851475143))
