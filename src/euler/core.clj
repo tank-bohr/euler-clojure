@@ -49,14 +49,41 @@
       #(quot n %)
       (factors n)))))
 
-(def problem1
-  "Find the sum of all the multiples of 3 or 5 below x"
-  (reduce + (multiples-of-3-or-5 1000)))
+(defn digits
+  ([n]
+    (digits n []))
+  ([n acc]
+    (if (== n 0)
+      acc
+      (recur (quot n 10) (conj acc (rem n 10))))))
 
-(def problem2
-  "Even Fibonacci numbers"
-  (reduce + (filter even? (fibonacci 4000000))))
+(defn palindrome?
+  [n]
+  (let [d (digits n)]
+    (=
+      d
+      (vec (reverse d)))))
 
-(def problem3
-  "Largest prime factor"
-  (max-prime-factor 600851475143))
+(def three-digits-numbers
+  (range 999 99 -1))
+
+(def problem4
+  (apply max
+    (for [
+      x three-digits-numbers
+      y three-digits-numbers
+       :let [product (* x y)]
+       :when (palindrome? product)]
+      product)))
+
+; (def problem1
+;   "Find the sum of all the multiples of 3 or 5 below x"
+;   (reduce + (multiples-of-3-or-5 1000)))
+
+; (def problem2
+;   "Even Fibonacci numbers"
+;   (reduce + (filter even? (fibonacci 4000000))))
+
+; (def problem3
+;   "Largest prime factor"
+;   (max-prime-factor 600851475143))

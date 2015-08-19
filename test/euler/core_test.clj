@@ -6,9 +6,6 @@
   (testing "dummy"
     (is (= 1 1))))
 
-(deftest problem1-test
-  (is (problem1 10) 23))
-
 (deftest multiples-of-3-or-5-test
   (is (multiples-of-3-or-5 10) '(3 5 6 9)))
 
@@ -30,3 +27,11 @@
 
 (deftest max-prime-factor-test
   (is (max-prime-factor 13195) 29))
+
+(deftest digits-test
+  (is (digits 123) [3 2 1]))
+
+(deftest palindrome?-test
+  (is (not (palindrome? 123)))
+  (is (palindrome? 12321))
+  (is (palindrome? 1221)))
