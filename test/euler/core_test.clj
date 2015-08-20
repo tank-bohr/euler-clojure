@@ -35,3 +35,10 @@
   (is (not (palindrome? 123)))
   (is (palindrome? 12321))
   (is (palindrome? 1221)))
+
+(deftest divided-by-each-of-the-numbers?-test
+  (is (divided-by-each-of-the-numbers? 2520 11)))
+
+(deftest smallest-divided-by-each-of-the-numbers-test
+  (is (= 2520 (smallest-divided-by-each-of-the-numbers 11))))
+

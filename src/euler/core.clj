@@ -64,17 +64,22 @@
       d
       (vec (reverse d)))))
 
+(defn divided-by-each-of-the-numbers?
+  [n edge]
+  (every? #(multiples? n %) (range 1 edge)))
+
+(defn smallest-divided-by-each-of-the-numbers
+  [edge]
+  (first (filter
+    #(divided-by-each-of-the-numbers? % edge)
+    (iterate inc 1))))
+
 (def three-digits-numbers
   (range 999 99 -1))
 
-(def problem4
-  (apply max
-    (for [
-      x three-digits-numbers
-      y three-digits-numbers
-       :let [product (* x y)]
-       :when (palindrome? product)]
-      product)))
+(defn sqr [n] (* n n))
+
+(def from-one-to-hundred (range 1 101))
 
 ; (def problem1
 ;   "Find the sum of all the multiples of 3 or 5 below x"
@@ -87,3 +92,24 @@
 ; (def problem3
 ;   "Largest prime factor"
 ;   (max-prime-factor 600851475143))
+
+; (def problem4
+;   (apply max
+;     (for [
+;       x three-digits-numbers
+;       y three-digits-numbers
+;        :let [product (* x y)]
+;        :when (palindrome? product)]
+;       product)))
+
+;; "Elapsed time: 187065.993956 msecs"
+;; 232792560
+; (def problem5
+;   "Smallest multiple"
+;   (smallest-divided-by-each-of-the-numbers 21))
+
+; (def problem6
+;   "Sum square difference"
+;   (-
+;     (sqr (reduce + from-one-to-hundred))
+;     (reduce + (map sqr from-one-to-hundred))))
