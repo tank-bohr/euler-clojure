@@ -42,3 +42,5 @@
 (deftest smallest-divided-by-each-of-the-numbers-test
   (is (= 2520 (smallest-divided-by-each-of-the-numbers 11))))
 
+(deftest nth-prime-number-test
+  (is (= 13 (nth-prime-number 5))))

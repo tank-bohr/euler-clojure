@@ -81,6 +81,10 @@
 
 (def from-one-to-hundred (range 1 101))
 
+(defn nth-prime-number
+  [n]
+  (nth (filter prime? (iterate #(+ 2 %) 1)) n))
+
 ; (def problem1
 ;   "Find the sum of all the multiples of 3 or 5 below x"
 ;   (reduce + (multiples-of-3-or-5 1000)))
@@ -113,3 +117,7 @@
 ;   (-
 ;     (sqr (reduce + from-one-to-hundred))
 ;     (reduce + (map sqr from-one-to-hundred))))
+
+; (def problem7
+;   "10001st prime"
+;   (nth-prime-number 10000))
