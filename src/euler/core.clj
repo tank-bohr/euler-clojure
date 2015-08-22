@@ -23,11 +23,11 @@
 
 (defn fibonacci
   ([edge]
-    (fibonacci edge '(1 1)))
+    (fibonacci edge '(1)))
   ([edge acc]
     (if (< edge (first acc))
       (rest acc)
-      (recur edge (fibonacci-next acc)))))
+      (fibonacci edge (fibonacci-next acc)))))
 
 (defn prime?
   [n]
@@ -51,18 +51,18 @@
 
 (defn digits
   ([n]
-    (digits n []))
+    (digits n '()))
   ([n acc]
     (if (== n 0)
       acc
-      (recur (quot n 10) (conj acc (rem n 10))))))
+      (digits (quot n 10) (cons (rem n 10) acc)))))
 
 (defn palindrome?
   [n]
   (let [d (digits n)]
     (=
       d
-      (vec (reverse d)))))
+      (reverse d))))
 
 (defn divided-by-each-of-the-numbers?
   [n edge]
